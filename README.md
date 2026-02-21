@@ -63,12 +63,25 @@ All steps are traced via **Datadog APM** for full observability.
 ### Install System Tools (macOS)
 
 ```bash
+# Homebrew packages
 brew install nmap go
+
+# Go-based tools (add Go bin to PATH)
 go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+# Nuclei: v3 may fail to build on Go 1.26; use v2 if so
 go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
-pip3 install sqlmap
+# or: go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+
+# sqlmap (use pipx when system Python is externally managed)
+pipx install sqlmap
+# or: pip3 install sqlmap  (inside a venv)
+
+# Add to ~/.zshrc so tools are on PATH:
 export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:$HOME/.local/bin   # pipx
 ```
+
+**Verify:** `nmap --version` · `subfinder -h` · `nuclei -version` · `sqlmap --version`
 
 ## Setup
 
