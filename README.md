@@ -97,6 +97,7 @@ pip install -r requirements.txt
 
 ```bash
 gcloud auth login
+gcloud projects create penagent-hack-2025
 gcloud config set project penagent-hack-2025
 gcloud services enable aiplatform.googleapis.com
 gcloud auth application-default login
